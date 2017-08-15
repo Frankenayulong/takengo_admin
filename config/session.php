@@ -148,7 +148,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', 'admin.takengo.dev'),
+    'domain' => env('SESSION_DOMAIN', '.takengo.dev'),
 
     /*
     |--------------------------------------------------------------------------
