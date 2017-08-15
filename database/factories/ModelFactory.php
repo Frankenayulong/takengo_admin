@@ -16,9 +16,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'first_name' => 'Kendrick',
+        'last_name' => 'Kesley',
+        'email' => 'kendrick@takengo.io',
+        'password' => $password ?: $password = bcrypt('kendricktakengo'),
         'remember_token' => str_random(10),
+        'status' => json_encode([
+            'active' => true
+        ]),
+        'last_ip' => $faker->ipv4()
     ];
 });
