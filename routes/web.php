@@ -13,9 +13,8 @@
 
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', function () {
-        return view('home');
-    });
+    Route::get('/', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/cars', 'CarController@show');
     Route::get('/orders', 'OrderController@show');
     Route::get('/messages', 'ContactUsController@show');
@@ -38,5 +37,3 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -24,8 +24,9 @@
             <div class="page-header-inner ">
                 <!-- BEGIN LOGO -->
                 <div class="page-logo">
-                    <a href="index.html">
-                        <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> </a>
+                    <a style="text-decoration:none" href="{{url('/')}}">
+                        <h3 class="logo-default" style="height:50px;width:135px;font-weight:500;color:#FFFFFF;margin-top:20px">TAKE N GO</h3>   
+                    </a>
                     <div class="menu-toggler sidebar-toggler">
                         <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
                     </div>
@@ -69,9 +70,8 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
         <div class="page-footer">
-            <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-                <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-                <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            <div class="page-footer-inner"> 2017 &copy; Takengo By
+                <a target="_blank" href="https://takengo.io">Frankenayulong</a>
                 <div class="scroll-to-top">
                     <i class="icon-arrow-up"></i>
                 </div>
