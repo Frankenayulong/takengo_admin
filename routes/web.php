@@ -11,21 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
 
-Route::get('/cars', 'CarController@show');
-
-Route::get('/orders', 'OrderController@show');
-
-Route::get('/messages', 'ContactUsController@show');
-
-Route::get('/newsletters', 'NewsletterController@show');
-
-Route::get('/users', 'UserController@show');
-
-Route::get('/admins', 'AdminController@show');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/', function () {
+        return view('home');
+    });
+    Route::get('/cars', 'CarController@show');
+    Route::get('/orders', 'OrderController@show');
+    Route::get('/messages', 'ContactUsController@show');
+    Route::get('/newsletters', 'NewsletterController@show');
+    Route::get('/users', 'UserController@show');
+    Route::get('/admins', 'AdminController@show');
+});
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

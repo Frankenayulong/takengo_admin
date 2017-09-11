@@ -1,15 +1,23 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
+ <!-- BEGIN PAGE HEADER-->
+ <h1 class="page-title"> Home
+        <small>admin dashboard</small>
+    </h1>
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <i class="icon-home"></i>
+                <span>Home</span>
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADER-->
+    <div class="car-list-page">
+        <div class="row">
+            <div class="col-md-12">
+                
             </div>
         </div>
     </div>
