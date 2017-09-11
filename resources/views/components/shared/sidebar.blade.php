@@ -40,7 +40,7 @@
             <li class="nav-item {{Request::is('newsletters*') ? 'active' : ''}}">
                 <a href="{{url('/newsletters')}}" class="nav-link">
                     <i class="icon-settings"></i>
-                    <span class="title">Newsletters</span>
+                    <span class="title">Newsletter Emails</span>
                 </a>
             </li>
             <li class="nav-item {{Request::is('users*') ? 'active' : ''}} ">

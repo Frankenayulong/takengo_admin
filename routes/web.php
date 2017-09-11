@@ -19,21 +19,13 @@ Route::get('/cars', 'CarController@show');
 
 Route::get('/orders', 'OrderController@show');
 
-Route::get('/messages', function(){
-    return view('messages-list');
-});
+Route::get('/messages', 'ContactUsController@show');
 
-Route::get('/newsletters', function(){
-    return view('newsletter-list');
-});
+Route::get('/newsletters', 'NewsletterController@show');
 
-Route::get('/users', function(){
-    return view('user-list');
-});
+Route::get('/users', 'UserController@show');
 
-Route::get('/admins', function(){
-    return view('admin-list');
-});
+Route::get('/admins', 'AdminController@show');
 
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

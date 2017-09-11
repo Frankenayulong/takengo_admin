@@ -64,254 +64,71 @@
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                                            <span></span>
-                                        </label>
-                                    </th>
-                                    <th> ID # </th>
-                                    <th> Title </th>
-                                    <th> Cust. Name </th>
-                                    <th> Cust. Email </th>
-                                    <th> Date/Time </th>
-                                    <th> Assigned To </th>
-                                    <th> Status </th>
+                                    <th> # </th>
+                                    <th> First Name </th>
+                                    <th> Last Name </th>
+                                    <th> Email </th>
+                                    <th> Phone </th>
+                                    <th> Last IP </th>
+                                    <th> Created At </th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($admins->data as $index => $admin)
                                 <tr class="odd gradeX">
                                     <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
+                                        <a href="app_ticket_details.html">{{$index+1}}</a>
                                     </td>
                                     <td>
-                                        <a href="app_ticket_details.html">1123</a>
+                                        {{$admin->first_name}}
+                                    </td>
+                                    <td> {{$admin->last_name}} </td>
+                                    <td>
+                                        <a href="mailto:{{$admin->email}}"> {{$admin->email}} </a>
                                     </td>
                                     <td>
-                                        <a href="app_ticket_details.html">Changing Colors</a>
+                                        @if($admin->phone)
+                                        <a href="tel:{{$admin->phone}}"> {{$admin->phone}} </a>
+                                        @else
+                                        <span class="label label-sm label-warning"> Unspecified </span>
+                                        @endif
                                     </td>
-                                    <td> Jane </td>
                                     <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
+                                        @if($admin->last_ip)
+                                        {{$admin->last_ip}}
+                                        @else
+                                        <span class="label label-sm label-warning"> Unspecified </span>
+                                        @endif
                                     </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Hugh Jackman </td>
-                                    <td>
-                                        <span class="label label-sm label-warning"> New </span>
-                                    </td>
+                                    <td class="center"> {{\Carbon\Carbon::parse($admin->created_at)->format('d M Y h:i:s A')}} </td>
                                 </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1134</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Modals popup customization</a>
-                                    </td>
-                                    <td> Randy </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-info"> Processed </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1144</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Form Input styling</a>
-                                    </td>
-                                    <td> Samantha </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-success"> Completed </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1243</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Counter skipping numbers</a>
-                                    </td>
-                                    <td> Daniel </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-default"> Pending </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1276</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Menu not working</a>
-                                    </td>
-                                    <td> Billy </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Hugh Jackman </td>
-                                    <td>
-                                        <span class="label label-sm label-default"> Pending </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1345</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Changing Colors</a>
-                                    </td>
-                                    <td> Jane </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Hugh Jackman </td>
-                                    <td>
-                                        <span class="label label-sm label-warning"> New </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1354</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Modals popup customization</a>
-                                    </td>
-                                    <td> Randy </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-default"> Pending </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1365</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Form Input styling</a>
-                                    </td>
-                                    <td> Samantha </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-success"> Completed </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1371</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Counter skipping numbers</a>
-                                    </td>
-                                    <td> Daniel </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Marcus Doe </td>
-                                    <td>
-                                        <span class="label label-sm label-default"> Pending </span>
-                                    </td>
-                                </tr>
-                                <tr class="odd gradeX">
-                                    <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" class="checkboxes" value="1" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">1373</a>
-                                    </td>
-                                    <td>
-                                        <a href="app_ticket_details.html">Menu not working</a>
-                                    </td>
-                                    <td> Billy </td>
-                                    <td>
-                                        <a href="mailto:customer@gmail.com"> customer@gmail.com </a>
-                                    </td>
-                                    <td class="center"> 10/12/15 1:45pm </td>
-                                    <td> Hugh Jackman </td>
-                                    <td>
-                                        <span class="label label-sm label-success"> Completed </span>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
+
+                        <div class="row">
+                            <div class="col-sm-12 text-right">
+                                <ul class="pagination pagination-sm">
+                                    @if($admins->current_page > 1)
+                                    <li>
+                                        <a href="{{Request::url()}}?page={{$admins->current_page-1}}">
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @for($i = 1; $i <= $admins->last_page; $i++)
+                                        <li class="{{$i == $admins->current_page ? 'active' : ''}}"><a href="{{Request::url()}}?page={{$i}}">{{$i}}</a></li>
+                                    @endfor
+                                    @if($admins->current_page < $admins->last_page)
+                                    <li>
+                                        <a href="{{Request::url()}}?page={{$admins->current_page+1}}">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
