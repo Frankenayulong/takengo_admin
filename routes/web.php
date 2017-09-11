@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
 
-Route::get('/cars', function(){
-    return view('cars-list');
-});
+Route::get('/cars', 'CarController@show');
 
-Route::get('/orders', function(){
-    return view('orders-list');
-});
+Route::get('/orders', 'OrderController@show');
 
 Route::get('/messages', function(){
     return view('messages-list');
