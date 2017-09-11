@@ -15,6 +15,30 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware('auth');
 
+Route::get('/cars', function(){
+    return view('cars-list');
+});
+
+Route::get('/orders', function(){
+    return view('orders-list');
+});
+
+Route::get('/messages', function(){
+    return view('messages-list');
+});
+
+Route::get('/newsletters', function(){
+    return view('newsletter-list');
+});
+
+Route::get('/users', function(){
+    return view('user-list');
+});
+
+Route::get('/admins', function(){
+    return view('admin-list');
+});
+
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
