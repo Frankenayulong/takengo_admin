@@ -2,7 +2,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html ng-app="takengo" lang="en">
     <!--<![endif]-->
     <head>
         <meta charset="utf-8" />
@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+    <body ng-controller="mainController" class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
         <!-- BEGIN HEADER -->
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
@@ -85,6 +85,19 @@
             <script src="{{asset('js/build-min.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/master-min.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/login-min.js')}}" type="text/javascript"></script>
+            <script src="{{ URL::asset('app/lib/angular/angular.min.js')}}"></script>
+            <script src="{{ URL::asset('app/lib/slim/slim.angular.js')}}"></script>
+            <script src="{{ URL::asset('app/lib/ngMap/ng-map.min.js')}}"></script>
+            <script src="{{ URL::asset('app/lib/slim/slim.angular.js')}}"></script>
+            <script src="{{ URL::asset('app/lib/angular/angular-cookies.min.js')}}"></script>
+            <script src="{{ URL::asset('app/app.js')}}"></script>
+            <script src="{{ URL::asset('app/controllers/cars.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/newsletter.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/messages.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/users.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/admins.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/orders.js') }}"></script>
+            <script src="{{ URL::asset('app/controllers/home.js') }}"></script>
     </body>
 
 </html>

@@ -20,4 +20,17 @@ class CarController extends Controller
         $response = json_decode((string)$result->getBody());
         return view('cars-list')->with('cars', $response);
     }
+
+    public function add(Request $request){
+        $client = new Client();
+        $result = $client->post(config('api.api_url') . 'admin/brands', [
+            'verify' => false
+        ]);
+        $response = json_decode((string)$result->getBody());
+        return view('cars-new')->with('brands', $response);
+    }
+
+    public function create(Request $request){
+        
+    }
 }

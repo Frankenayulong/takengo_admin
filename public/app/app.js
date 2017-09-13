@@ -1,6 +1,4 @@
-var app = angular.module('takeNGoAdmin', [])
-.constant('API_URL', 'http://api.takengo.dev/');
-//.constant('API_URL', 'http://api.takengo.io/');
+var app = angular.module('takengo', []);
 
 app.controller('mainController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){
     $scope.digest = function(a) {

@@ -9,7 +9,7 @@
         <ul class="page-breadcrumb">
             <li>
                 <i class="icon-home"></i>
-                <a href="index.html">Home</a>
+                <a href="{{url('/')}}">Home</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
@@ -18,7 +18,7 @@
         </ul>
     </div>
     <!-- END PAGE HEADER-->
-    <div class="car-list-page">
+    <div ng-controller="orderListController" class="car-list-page">
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light ">

@@ -14,7 +14,7 @@
         </ul>
     </div>
     <!-- END PAGE HEADER-->
-    <div class="car-list-page">
+    <div ng-controller="homeController" class="car-list-page">
         <div class="row">
             <div class="col-md-12">
                 

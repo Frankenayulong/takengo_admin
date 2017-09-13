@@ -2,14 +2,14 @@
 
 @section('content')
  <!-- BEGIN PAGE HEADER-->
- <h1 class="page-title"> Takengo Cars
+    <h1 class="page-title"> Takengo Cars
         <small>these all are our cars</small>
     </h1>
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
                 <i class="icon-home"></i>
-                <a href="index.html">Home</a>
+                <a href="{{url('/')}}">Home</a>
                 <i class="fa fa-angle-right"></i>
             </li>
             <li>
@@ -18,7 +18,7 @@
         </ul>
     </div>
     <!-- END PAGE HEADER-->
-    <div class="car-list-page">
+    <div ng-controller="carListController" class="car-list-page">
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light ">
@@ -33,9 +33,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <button id="sample_editable_1_new" class="btn sbold green"> Add New
+                                        <a href="{{url('/cars/new')}}" id="sample_editable_1_new" class="btn sbold green"> Add New
                                             <i class="fa fa-plus"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
