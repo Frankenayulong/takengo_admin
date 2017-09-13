@@ -34,40 +34,44 @@
                         </div>
                     </div>
                     <div class="portlet-body form">
-                    <form role="form">
+                    <form role="form" method="POST" action="{{url('/cars')}}" >
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="name" type="text" class="form-control" id="name">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('name') ? 'has-error' : ''}}">
+                                    <input name="name" value="{{old('name')}}" type="text" class="form-control" id="name">
                                     <label for="name">Name</label>
+                                    <span class="help-block">{{$errors->first('name')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <select name="cbid" class="form-control edited" id="brand">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('cbid') ? 'has-error' : ''}}">
+                                    <select name="cbid" value="{{old('cbid')}}" class="form-control edited" id="brand">
                                         <option value=" " selected>Please select...</option>
                                         @foreach($brands as $brand)
                                         <option value="{{$brand->cbid}}">{{$brand->name}}</option>
                                         @endforeach
                                     </select>
                                     <label for="brand">Brand</label>
+                                    <span class="help-block">{{$errors->first('cbid')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="model" type="text" class="form-control" id="model">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('model') ? 'has-error' : ''}}">
+                                    <input value="{{old('model')}}" name="model" type="text" class="form-control" id="model">
                                     <label for="model">Model</label>
+                                    <span class="help-block">{{$errors->first('model')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="release_year" maxlength="4" type="text" class="form-control" id="year">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('release_year') ? 'has-error' : ''}}">
+                                    <input value="{{old('release_year')}}" name="release_year" maxlength="4" type="text" class="form-control" id="year">
                                     <label for="year">Year</label>
+                                    <span class="help-block">{{$errors->first('release_year')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <select name="car_types" class="form-control edited" id="type">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('car_types') ? 'has-error' : ''}}">
+                                    <select value="{{old('car_types')}}" name="car_types" class="form-control edited" id="type">
                                         <option value=" " selected>Please select...</option>
                                         <option value="SEDAN">Sedan</option>
                                         <option value="SUV">SUV</option>
@@ -75,84 +79,95 @@
                                         <option value="SPORT">Sport</option>
                                     </select>
                                     <label for="type">Type</label>
+                                    <span class="help-block">{{$errors->first('car_types')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <select name="transition_mode" class="form-control edited" id="transition">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('transition_mode') ? 'has-error' : ''}}">
+                                    <select value="{{old('transition_mode')}}" name="transition_mode" class="form-control edited" id="transition">
                                         <option value="AUTO" selected>Automatic</option>
                                         <option value="MANUAL">Manual</option>
                                     </select>
                                     <label for="transition">Transition Mode</label>
+                                    <span class="help-block">{{$errors->first('transition_mode')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="price" type="text" class="form-control" id="price">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('price') ? 'has-error' : ''}}">
+                                    <input value="{{old('price')}}" name="price" type="text" class="form-control" id="price">
                                     <label for="price">Price per Day</label>
+                                    <span class="help-block">{{$errors->first('price')}}</span>
                                 </div>
                             </div>
                         </div>
                         <hr/>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="capacity" type="text" class="form-control" id="capacity">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('capacity') ? 'has-error' : ''}}">
+                                    <input value="{{old('capacity')}}" name="capacity" type="text" class="form-control" id="capacity">
                                     <label for="capacity">Capacity</label>
+                                    <span class="help-block">{{$errors->first('capacity')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="doors" type="text" class="form-control" id="doors">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('doors') ? 'has-error' : ''}}">
+                                    <input value="{{old('doors')}}" name="doors" type="text" class="form-control" id="doors">
                                     <label for="doors">Doors</label>
+                                    <span class="help-block">{{$errors->first('doors')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="large_bags" type="text" class="form-control" id="large_bags">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('large_bags') ? 'has-error' : ''}}">
+                                    <input value="{{old('large_bags')}}" name="large_bags" type="text" class="form-control" id="large_bags">
                                     <label for="large_bags">Large Bags</label>
+                                    <span class="help-block">{{$errors->first('large_bags')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="small_bags" type="text" class="form-control" id="small_bags">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('small_bags') ? 'has-error' : ''}}">
+                                    <input value="{{old('small_bags')}}" name="small_bags" type="text" class="form-control" id="small_bags">
                                     <label for="small_bags">Small Bags</label>
+                                    <span class="help-block">{{$errors->first('small_bags')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <select name="air_conditioned" class="form-control edited" id="air_conditioned">
-                                        <option value="true" selected>Yes</option>
-                                        <option value="false">No</option>
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('air_conditioned') ? 'has-error' : ''}}">
+                                    <select value="{{old('air_conditioned')}}" name="air_conditioned" class="form-control edited" id="air_conditioned">
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                     <label for="air_conditioned">Air Conditioned</label>
+                                    <span class="help-block">{{$errors->first('air_conditioned')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="fuel_policy" type="text" class="form-control" id="fuel_policy">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('fuel_policy') ? 'has-error' : ''}}">
+                                    <input value="{{old('fuel_policy')}}" name="fuel_policy" type="text" class="form-control" id="fuel_policy">
                                     <label for="fuel_policy">Fuel Policy</label>
+                                    <span class="help-block">{{$errors->first('fuel_policy')}}</span>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <select name="unlimited_mileage" class="form-control edited" id="unlimited_mileage">
-                                        <option value="true" selected>Yes</option>
-                                        <option value="false">No</option>
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('unlimited_mileage') ? 'has-error' : ''}}">
+                                    <select value="{{old('unlimited_mileage', '0')}}" ng-init="mileage.unlimited = '{{old('unlimited_mileage', '0')}}'" ng-model="mileage.unlimited" name="unlimited_mileage" class="form-control edited" id="unlimited_mileage">
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
                                     </select>
                                     <label for="unlimited_mileage">Unlimited Mileage</label>
+                                    <span class="help-block">{{$errors->first('unlimited_mileage')}}</span>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-md-6">
-                                <div class="form-group form-md-line-input form-md-floating-label">
-                                    <input name="limit_mileage" type="text" class="form-control" id="mileage_limit">
+                            <div ng-show="mileage.unlimited == '0'" class="col-xs-12 col-md-6">
+                                <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('limit_mileage') ? 'has-error' : ''}}">
+                                    <input value="{{old('limit_mileage')}}" ng-model="mileage.limit" ng-init="mileage.limit = '{{old('limit_mileage')}}'" name="limit_mileage" type="text" class="form-control" id="mileage_limit">
                                     <label for="mileage_limit">Mileage Limit</label>
+                                    <span class="help-block">{{$errors->first('limit_mileage')}}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions noborder text-right">
                             <button type="button" class="btn default">Cancel</button>
-                            <button type="button" class="btn blue">Submit</button>
+                            <button type="submit" class="btn blue">Submit</button>
                         </div>
                     </form>
                     </div>
