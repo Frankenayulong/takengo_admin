@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 
 class CarController extends Controller
 {
-    public function show(Request $request){
+    public function index(Request $request){
         $page = $request->input('page', 1);
         $client = new Client();
         $result = $client->post(config('api.api_url') . 'admin/cars', [
@@ -19,6 +19,29 @@ class CarController extends Controller
         ]);
         $response = json_decode((string)$result->getBody());
         return view('cars-list')->with('cars', $response);
+    }
+
+    public function show(Request $request, $cid){
+        $client = new Client();
+        $result = $client->post(config('api.api_url') . 'admin/cars/show/'.$cid, [
+            'verify' => false,
+            'form_params' => [
+                
+            ]
+        ]);
+        $result2 = $client->post(config('api.api_url') . 'admin/brands', [
+            'verify' => false
+        ]);
+        $response2 = json_decode((string)$result2->getBody());
+        $response = json_decode((string)$result->getBody());
+        if($response->status == 'OK'){
+            return view('cars-view')->with([
+                'car' => $response->car,
+                'brands' => $response2
+            ]);
+        }else{
+            return redirect()->back();
+        }  
     }
 
     public function add(Request $request){
@@ -78,5 +101,6 @@ class CarController extends Controller
             $request->session()->flash('status', 'Error creating a car!');
             return redirect()->back()->withInput();
         }
+        
     }
 }

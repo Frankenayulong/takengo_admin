@@ -1,4 +1,12 @@
-var app = angular.module('takengo', []);
+var env = {};
+
+// Import variables if present (from env.js)
+if(window){  
+  Object.assign(env, window.__env);
+}
+
+var app = angular.module('takengo', ['slim'])
+.constant('ENV', env);
 
 app.controller('mainController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){
     $scope.digest = function(a) {
