@@ -83,6 +83,7 @@
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
 <script src="../assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCk4jGn1h6CtPzKYczwwvv5IwEgomxgmwA"></script>
             <script src="{{asset('js/env.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/build-min.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/master-min.js')}}" type="text/javascript"></script>

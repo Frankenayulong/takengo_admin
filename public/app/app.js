@@ -5,7 +5,7 @@ if(window){
   Object.assign(env, window.__env);
 }
 
-var app = angular.module('takengo', ['slim'])
+var app = angular.module('takengo', ['slim', 'ngMap'])
 .constant('ENV', env);
 
 app.controller('mainController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){

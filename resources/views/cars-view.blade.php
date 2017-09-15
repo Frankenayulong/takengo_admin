@@ -183,11 +183,9 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="row">
-                            @foreach($car->pictures as $picture)
-                            <div class="col-md-4 col-sm-12" style="height:225px;background-image:url('{{config('api.api_url') . 'img/cars' . '/' . $car->cid . '/' . $picture->pic_name}}');background-size:contain;background-position:center center;background-repeat:no-repeat;">
-                            </div>
-                            @endforeach
+                        <div class="row" ng-init="pictures = {{json_encode($car->pictures)}}">
+                        <div ng-repeat="picture in pictures" class="col-md-4 col-sm-12" style="height:225px;background-image:url('{{config('api.api_url') . 'img/cars' . '/' . $car->cid}}/@{{picture.pic_name}}');background-size:contain;background-position:center center;background-repeat:no-repeat;">
+                        </div>
                             <div class="col-md-4 col-sm-12">
                                 <slim id="car-picture-slim" data-ratio="16:9"
                                     data-size="400,225"
@@ -201,6 +199,30 @@
                                 </slim>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-controller="carMapController" ng-init="cid = {{$car->cid}}" class="row">
+            <div class="col-md-12">
+                <div class="portlet light ">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Current Location</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                    <ng-map id="cars-collection-map" center="-37.800426, 144.9352466" zoom="13">
+                        
+                        <marker position="[-37.800426, 144.9352466]"
+                             centered="true" title="Current Location"
+                            draggable="true" on-dragend="setCurrentLocation()"
+                            >
+                        </marker>
+                        
+                    </ng-map>
                     </div>
                 </div>
             </div>
