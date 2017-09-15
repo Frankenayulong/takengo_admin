@@ -17,8 +17,7 @@ gulp.task('css', function(){
         'global/css/plugins-md.min.css',
         'layouts/layout2/css/layout.min.css',
         'layouts/layout2/css/themes/blue.min.css',
-        'layouts/layout2/css/custom.min.css',
-        'global/plugins/slim/slim.min.css'
+        'layouts/layout2/css/custom.min.css'
     ];
     return gulp.src(filesExist(css_files))
     .pipe(concatCss('build.css'))

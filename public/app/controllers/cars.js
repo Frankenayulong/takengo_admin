@@ -34,7 +34,7 @@ app.controller('carPictureController', ['$scope', '$timeout', '$http', '$rootSco
     $scope.digest(()=>{
         console.log($scope.cid);
         $scope.slim = {
-            api_url: ENV.API_URL + '/admin/cars/'+$scope.cid+'/picture/upload',
+            api_url: ENV.API_URL + 'admin/cars/'+$scope.cid+'/picture/upload',
             // called when slim has initialized
             init: function (data, slim) {
                 // slim instance reference

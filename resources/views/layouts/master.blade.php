@@ -12,6 +12,7 @@
         <meta content="Admin site of takengo" name="description" />
         <meta content="" name="author" />
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="{{asset('css/plugins/slim.min.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('css/build.css')}}" rel="stylesheet" type="text/css"/>
         <link href="{{asset('css/login.css')}}" rel="stylesheet" type="text/css"/>
         <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -82,6 +83,7 @@
 <script src="../assets/global/plugins/excanvas.min.js"></script> 
 <script src="../assets/global/plugins/ie8.fix.min.js"></script> 
 <![endif]-->
+            <script src="{{asset('js/env.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/build-min.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/master-min.js')}}" type="text/javascript"></script>
             <script src="{{asset('js/login-min.js')}}" type="text/javascript"></script>

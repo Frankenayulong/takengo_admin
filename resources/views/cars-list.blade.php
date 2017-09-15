@@ -91,7 +91,9 @@
                                     </td>
                                     <td class="center"> {{\Carbon\Carbon::parse($car->created_at)->format('d M Y')}} </td>
                                     <td>
-                                        <span class="label label-sm label-warning"> New </span>
+                                            <a href='{{url("/cars/".$car->cid)}}' class="btn btn-icon-only red">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
                                     </td>
                                 </tr>
                                 @endforeach
