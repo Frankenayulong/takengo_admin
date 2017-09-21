@@ -53,6 +53,56 @@ class CarController extends Controller
         return view('cars-new')->with('brands', $response);
     }
 
+    public function edit(Request $request, $cid){
+        $this->validate($request, [
+            'name' => 'required',
+            'cbid' => 'required|numeric',
+            'model' => 'required',
+            'release_year' => 'required|digits:4',
+            'car_types' => 'required|in:SEDAN,SUV,HATCHBACK,SPORT',
+            'transition_mode' => 'required|in:AUTO,MANUAL',
+            'price' => 'required|numeric',
+            'capacity' => 'nullable|numeric',
+            'doors' => 'nullable|numeric',
+            'large_bags' => 'nullable|numeric',
+            'small_bags' => 'nullable|numeric',
+            'air_conditioned' => 'required|boolean',
+            'fuel_policy' => 'nullable',
+            'unlimited_mileage' => 'required|boolean',
+            'limit_mileage' => 'nullable|numeric'
+        ]);
+        $client = new Client();
+        $result = $client->put(config('api.api_url') . 'admin/cars/'.$cid, [
+            'verify' => false,
+            'form_params' => [
+                'name' => $request->name,
+                'cbid' => $request->cbid,
+                'model' => $request->model,
+                'release_year' => $request->release_year,
+                'car_types' => $request->car_types,
+                'transition_mode' => $request->transition_mode,
+                'price' => $request->price,
+                'capacity' => $request->capacity,
+                'doors' => $request->doors,
+                'large_bags' => $request->large_bags,
+                'small_bags' => $request->small_bags,
+                'air_conditioned' => $request->air_conditioned,
+                'fuel_policy' => $request->fuel_policy,
+                'unlimited_mileage' => $request->unlimited_mileage,
+                'limit_mileage' => $request->limit_mileage
+            ]
+        ]);
+        $response = json_decode((string)$result->getBody());
+        if($response->status != 'OK'){
+            $request->session()->flash('success', true);
+            $request->session()->flash('status', 'Success editing the car!');
+        }else{
+            $request->session()->flash('success', false);
+            $request->session()->flash('status', 'Error editing the car!');
+        }
+        return redirect("/cars/$cid");
+    }
+
     public function create(Request $request){
         $this->validate($request, [
             'name' => 'required',

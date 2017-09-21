@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/cars/new', 'CarController@add');
     Route::post('/cars', 'CarController@create');
     Route::get('/cars/{cid}', 'CarController@show');
+    Route::post('/cars/{cid}/edit', 'CarController@edit');
     Route::get('/orders', 'OrderController@show');
     Route::get('/messages', 'ContactUsController@show');
     Route::get('/newsletters', 'NewsletterController@show');
