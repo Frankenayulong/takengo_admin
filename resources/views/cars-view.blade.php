@@ -182,11 +182,31 @@
                             <span class="caption-subject font-blue-madison bold uppercase">Pictures</span>
                         </div>
                     </div>
-                    <div class="portlet-body">
-                        <div class="row" ng-init="pictures = {{json_encode($car->pictures)}}">
-                        <div ng-repeat="picture in pictures" class="col-md-4 col-sm-12" style="height:225px;background-image:url('{{config('api.api_url') . 'img/cars' . '/' . $car->cid}}/@{{picture.pic_name}}');background-size:contain;background-position:center center;background-repeat:no-repeat;">
+                    <div class="portlet-body" ng-init="pictures = {{json_encode($car->pictures)}}">
+                        <div class="row">
+                            <div class="portfolio-content portfolio-1">
+                                <div id="js-grid-juicy-projects" class="cbp">
+                                    
+                                    <div ng-repeat="picture in pictures | orderBy:'cpid'" class="cbp-item">
+                                        <div class="cbp-caption">
+                                            <div class="cbp-caption-defaultWrap">
+                                                <div style="height:275px;background-image:url('{{config('api.api_url') . 'img/cars' . '/' . $car->cid}}/@{{picture.pic_name}}');background-size:contain;background-position:center center;background-repeat:no-repeat;"></div>
+                                            </div>
+                                            <div class="cbp-caption-activeWrap">
+                                                <div class="cbp-l-caption-alignCenter">
+                                                    <div class="cbp-l-caption-body">
+                                                        <a href="javascript:;" ng-click="deletePicture(picture.pic_name)" class="cbp-l-caption-buttonLeft btn red uppercase">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                            <div class="col-md-4 col-sm-12">
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-4 col-sm-12 col-md-offset-4">
+                                <h4 style="text-align:center">Upload new picture</h4>
                                 <slim id="car-picture-slim" data-ratio="16:9"
                                     data-size="400,225"
                                     data-service="slim.api_url"
@@ -214,9 +234,9 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                    <ng-map id="cars-collection-map" center="-37.800426, 144.9352466" zoom="13">
+                    <ng-map id="cars-collection-map" center="{{$car->last_location[0]->lat or '-37.800426'}}, {{$car->last_location[0]->long or '144.9352466'}}" zoom="13">
                         
-                        <marker position="[-37.800426, 144.9352466]"
+                        <marker position="[{{$car->last_location[0]->lat or '-37.800426'}}, {{$car->last_location[0]->long or '144.9352466'}}]"
                              centered="true" title="Current Location"
                             draggable="true" on-dragend="setCurrentLocation()"
                             >

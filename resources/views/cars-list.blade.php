@@ -77,10 +77,10 @@
                                 @foreach($cars->data as $index => $car)
                                 <tr class="odd gradeX">
                                     <td>
-                                        <a href="app_ticket_details.html">{{(($cars->current_page - 1) * $cars->per_page) + $index + 1}}</a>
+                                        <a href="{{url('/cars/'.$car->cid)}}">{{(($cars->current_page - 1) * $cars->per_page) + $index + 1}}</a>
                                     </td>
                                     <td>
-                                        <a href="app_ticket_details.html">{{$car->name}}</a>
+                                        <a href="{{url('/cars/'.$car->cid)}}">{{$car->name}}</a>
                                     </td>
                                     <td>
                                         {{$car->brand->name or "Unspecified"}}

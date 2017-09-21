@@ -48,12 +48,78 @@ app.controller('carPictureController', ['$scope', '$timeout', '$http', '$rootSco
             console.log(slim);
             slim.remove();
             console.log(response);
-            $scope.pictures.push(response);
-            $scope.digest();
+            $scope.pictures = [...$scope.pictures, response];
+            console.log($scope.pictures);
+            $scope.digest(_=>{
+                $('#js-grid-juicy-projects').cubeportfolio('destroy');
+                $scope.digest(_=>{
+                    initPortfolio();
+                })
+                
+            });
         }
     }
     $scope.digest(()=>{
         $scope.slim.api_url = ENV.API_URL + 'admin/cars/'+$scope.cid+'/picture/upload';
+    })
+
+    $scope.deletePicture = (pic_name) => {
+        console.log(pic_name)
+        $http.post(ENV.API_URL + 'admin/cars/' + $scope.cid + '/delete-picture', {
+            'image_name': pic_name
+        })
+        .then((data)=>{
+            console.log(data.data); 
+            if(data.data.status == 'OK'){
+                $scope.pictures = $scope.pictures.filter(obj=>{
+                    return obj.pic_name != pic_name;
+                })
+                $scope.digest(_=>{
+                    $('#js-grid-juicy-projects').cubeportfolio('destroy');
+                    initPortfolio()
+                });
+            }
+            console.log($scope.pictures)
+            
+            $scope.digest();
+        }, (data)=>{
+            console.log(data)
+            
+            $scope.digest();
+        });
+    }
+
+    var initPortfolio = () => {
+        $('#js-grid-juicy-projects').cubeportfolio({
+            layoutMode: 'grid',
+            defaultFilter: '*',
+            gapHorizontal: 35,
+            gapVertical: 10,
+            gridAdjustment: 'responsive',
+            mediaQueries: [{
+                width: 1500,
+                cols: 5
+            }, {
+                width: 1100,
+                cols: 4
+            }, {
+                width: 800,
+                cols: 3
+            }, {
+                width: 480,
+                cols: 2
+            }, {
+                width: 320,
+                cols: 1
+            }],
+            caption: 'overlayBottomReveal',
+            displayType: 'sequentially',
+            displayTypeSpeed: 80,
+        });
+    }
+
+    $scope.digest(_=>{
+        initPortfolio();
     })
 
 }])

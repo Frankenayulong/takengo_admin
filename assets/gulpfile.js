@@ -17,7 +17,8 @@ gulp.task('css', function(){
         'global/css/plugins-md.min.css',
         'layouts/layout2/css/layout.min.css',
         'layouts/layout2/css/themes/blue.min.css',
-        'layouts/layout2/css/custom.min.css'
+        'layouts/layout2/css/custom.css',
+        'global/plugins/cubeportfolio/css/cubeportfolio.css'
     ];
     return gulp.src(filesExist(css_files))
     .pipe(concatCss('build.css'))
@@ -46,7 +47,8 @@ gulp.task('js', function(){
         'global/plugins/jquery-validation/js/jquery.validate.min.js',
         'global/plugins/jquery-validation/js/additional-methods.min.js',
         'global/plugins/select2/js/select2.full.min.js',
-        'global/scripts/app.min.js'
+        'global/scripts/app.min.js',
+        'global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js'
     ];
     return gulp.src(filesExist(js_files))
     .pipe(concat('build.js'))
