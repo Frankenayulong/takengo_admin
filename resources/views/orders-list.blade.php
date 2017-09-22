@@ -29,31 +29,6 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-6 col-md-offset-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-print"></i> Print </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>
@@ -61,9 +36,12 @@
                                     <th> Car Name </th>
                                     <th> Cust. Name </th>
                                     <th> Cust. Email </th>
-                                    <th> Start Date </th>
-                                    <th> End Date </th>
-                                    <th> Order Date </th>
+                                    <th> Date </th>
+                                    <th> Start Time </th>
+                                    <th> End Time </th>
+                                    <th> Order Time </th>
+                                    <th> Duration </th>
+                                    <th> Price </th>
                                     <th> Status </th>
                                 </tr>
                             </thead>
@@ -71,25 +49,34 @@
                                 @foreach($orders->data as $index => $order)
                                 <tr class="odd gradeX">
                                     <td>
-                                        <a href="app_ticket_details.html">{{$index + 1}}</a>
+                                        <a href="{{url('/orders/'.$order->ohid)}}">{{$index + 1}}</a>
                                     </td>
                                     <td>
-                                        <a href="app_ticket_details.html">{{$order->car->name or "Unspecified"}}</a>
+                                        <a href="{{url('/cars/'.$order->car->cid)}}">{{$order->car->name or "Unspecified"}}</a>
                                     </td>
                                     <td> {{$order->customer->first_name or "Unspecified"}} {{$order->customer->last_name or ""}}</td>
                                     <td>
                                         <a href="mailto:{{$order->customer->email or "Unspecified"}}"> {{$order->customer->email or "Unspecified"}} </a>
                                     </td>
                                     <td class="center"> {{\Carbon\Carbon::parse($order->start_date)->format('d M Y')}} </td>
-                                    <td class="center"> {{\Carbon\Carbon::parse($order->end_date)->format('d M Y')}} </td>
+                                    <td class="center"> {{\Carbon\Carbon::parse($order->start_date)->format('h:i A')}} </td>
+                                    <td class="center"> {{\Carbon\Carbon::parse($order->end_date)->format('h:i A')}} </td>
                                     <td class="center"> {{\Carbon\Carbon::parse($order->created_at)->format('d M Y h:i:s A')}} </td>
+                                    <td> {{\Carbon\Carbon::parse($order->end_date)->diff(\Carbon\Carbon::parse($order->start_date))->format('%H:%I:%S')}} </td>
                                     <td>
-                                        @if($order->transactions_count > 0)
-                                        <span class="label label-sm label-success"> Paid </span>
-                                        @elseif($order->active)
-                                        <span class="label label-sm label-warning"> Pending </span>
+                                    ${{number_format(max(\Carbon\Carbon::parse($order->end_date)->diffInHours(\Carbon\Carbon::parse($order->start_date)), 1) * $order->car_price / 24, 2, '.', ',')}}
+                                    </td>
+                                    <td>
+                                        @if($order->active && !$order->started)
+                                            @if(\Carbon\Carbon::now()->gt(\Carbon\Carbon::parse($order->start_date)))
+                                            <span class="label label-sm label-danger"> Not Responding </span>
+                                            @else
+                                            <span class="label label-sm label-warning"> Pending </span>
+                                            @endif
+                                        @elseif($order->active && $order->started)
+                                        <span class="label label-sm label-success"> Driving </span>
                                         @else
-                                        <span class="label label-sm label-danger"> Canceled </span>
+                                        <span class="label label-sm label-default"> Stopped </span>
                                         @endif
                                     </td>
                                 </tr>

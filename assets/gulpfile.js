@@ -9,6 +9,7 @@ gulp.task('css', function(){
     var css_files = [
         'global/plugins/font-awesome/css/font-awesome.min.css',
         'global/plugins/simple-line-icons/simple-line-icons.min.css',
+        'global/plugins/jquery-confirm/css/jquery-confirm.css',
         'global/plugins/bootstrap/css/bootstrap.min.css',
         'global/plugins/bootstrap-switch/css/bootstrap-switch.min.css',
         'global/plugins/select2/css/select2.min.css',
@@ -18,7 +19,8 @@ gulp.task('css', function(){
         'layouts/layout2/css/layout.min.css',
         'layouts/layout2/css/themes/blue.min.css',
         'layouts/layout2/css/custom.css',
-        'global/plugins/cubeportfolio/css/cubeportfolio.css'
+        'global/plugins/cubeportfolio/css/cubeportfolio.css',
+        'page.css'
     ];
     return gulp.src(filesExist(css_files))
     .pipe(concatCss('build.css'))
@@ -41,6 +43,7 @@ gulp.task('js', function(){
         'global/plugins/jquery.min.js',
         'global/plugins/bootstrap/js/bootstrap.min.js',
         'global/plugins/js.cookie.min.js',
+        'global/plugins/jquery-confirm/js/jquery-confirm.js',
         'global/plugins/jquery-slimscroll/jquery.slimscroll.min.js',
         'global/plugins/jquery.blockui.min.js',
         'global/plugins/bootstrap-switch/js/bootstrap-switch.min.js',

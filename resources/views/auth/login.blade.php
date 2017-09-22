@@ -23,10 +23,6 @@
 
     <body class=" login">
         <!-- BEGIN LOGO -->
-        <div class="logo">
-            <a href="index.html">
-                <img src="../assets/pages/img/logo-big-white.png" style="height: 17px;" alt="" /> </a>
-        </div>
         <!-- END LOGO -->
         <!-- BEGIN LOGIN -->
         <div class="content">
@@ -63,7 +59,7 @@
                 </div>
                 <div class="form-actions">
                     <input type="hidden" name="remember" value="1" />
-                    <button type="submit" class="btn red btn-block uppercase">Login</button>
+                    <button id="login-submit" type="submit" class="btn red btn-block uppercase">Login</button>
                 </div>
                 <div class="form-actions">
                     <div class="pull-left forget-password-block">
@@ -89,7 +85,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" id="back-btn" class="btn btn-default">Back</button>
-                    <button type="submit" class="btn btn-primary uppercase pull-right">Submit</button>
+                    <button id="forget-submit" type="submit" class="btn btn-primary uppercase pull-right">Submit</button>
                 </div>
             </form>
             <!-- END FORGOT PASSWORD FORM -->

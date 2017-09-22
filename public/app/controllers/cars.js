@@ -1,5 +1,32 @@
-app.controller('carListController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){
-    
+app.controller('carListController', ['$scope', '$timeout', '$http', '$rootScope', 'ENV', function($scope, $timeout, $http, $rootScope, ENV){
+    $scope.delete = (id) => {
+        $.confirm({
+            theme: 'modern',
+            title: 'Are you sure you want to delete this car?',
+            content: 'All of your work will be erased :(',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                confirm: function () {
+                    $http.post(ENV.API_URL + 'admin/cars/' + id + '/delete', {
+                        
+                    })
+                    .then((data)=>{
+                        console.log(data.data); 
+                        location.reload()
+                        $scope.digest();
+                    }, (data)=>{
+                        console.log(data.data)
+                        
+                        $scope.digest();
+                    });
+                },
+                cancel: function () {
+                    
+                }
+            }
+        });
+    }
 }])
 
 app.controller('carNewController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){
@@ -64,29 +91,43 @@ app.controller('carPictureController', ['$scope', '$timeout', '$http', '$rootSco
     })
 
     $scope.deletePicture = (pic_name) => {
-        console.log(pic_name)
-        $http.post(ENV.API_URL + 'admin/cars/' + $scope.cid + '/delete-picture', {
-            'image_name': pic_name
-        })
-        .then((data)=>{
-            console.log(data.data); 
-            if(data.data.status == 'OK'){
-                $scope.pictures = $scope.pictures.filter(obj=>{
-                    return obj.pic_name != pic_name;
-                })
-                $scope.digest(_=>{
-                    $('#js-grid-juicy-projects').cubeportfolio('destroy');
-                    initPortfolio()
-                });
+        $.confirm({
+            theme: 'modern',
+            title: 'Are you sure you want to delete this picture?',
+            content: 'You will not be able to recover this again',
+            type: 'red',
+            typeAnimated: true,
+            buttons: {
+                confirm: function () {
+                    $http.post(ENV.API_URL + 'admin/cars/' + $scope.cid + '/delete-picture', {
+                        'image_name': pic_name
+                    })
+                    .then((data)=>{
+                        console.log(data.data); 
+                        if(data.data.status == 'OK'){
+                            $scope.pictures = $scope.pictures.filter(obj=>{
+                                return obj.pic_name != pic_name;
+                            })
+                            $scope.digest(_=>{
+                                $('#js-grid-juicy-projects').cubeportfolio('destroy');
+                                initPortfolio()
+                            });
+                        }
+                        console.log($scope.pictures)
+                        
+                        $scope.digest();
+                    }, (data)=>{
+                        console.log(data)
+                        
+                        $scope.digest();
+                    });
+                },
+                cancel: function () {
+                    
+                }
             }
-            console.log($scope.pictures)
-            
-            $scope.digest();
-        }, (data)=>{
-            console.log(data)
-            
-            $scope.digest();
         });
+        
     }
 
     var initPortfolio = () => {

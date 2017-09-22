@@ -38,39 +38,19 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                        <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-print"></i> Print </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
                             <thead>
                                 <tr>
-                                    <th> # </th>
+                                    <th style="width:50px;"> # </th>
                                     <th> Name </th>
                                     <th> Brand </th>
-                                    <th> Active Bookings </th>
-                                    <th> Canceled Bookings </th>
+                                    <th class="center" style="width:100px;"> Status </th>
+                                    <th style="width:150px;text-align:right"> Total Orders </th>
                                     <th> Created Date </th>
-                                    <th> Actions </th>
+                                    <th style="width:120px;"> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,15 +65,25 @@
                                     <td>
                                         {{$car->brand->name or "Unspecified"}}
                                     </td>
-                                    <td> {{$car->active_order_count}} </td>
-                                    <td>
-                                        {{$car->inactive_order_count}}
+                                    <td class="center"> 
+                                        @if($car->active_order_count > 0)
+                                        <span class="label label-sm label-success"> Active </span>
+                                        @else
+                                        <span class="label label-sm label-warning"> Asleep </span>
+                                        @endif
+                                        
                                     </td>
+                                    <td style="text-align:right">{{$car->inactive_order_count}}</td>
                                     <td class="center"> {{\Carbon\Carbon::parse($car->created_at)->format('d M Y')}} </td>
                                     <td>
-                                            <a href='{{url("/cars/".$car->cid)}}' class="btn btn-icon-only red">
+                                            <a href='{{url("/cars/".$car->cid)}}' class="btn btn-icon-only blue">
                                                 <i class="fa fa-edit"></i>
                                             </a>
+                                            @if($car->active_order_count <= 0 && $car->inactive_order_count <= 0)
+                                            <a href='javascript:;' ng-click="delete({{$car->cid}})" class="btn btn-icon-only red">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                            @endif
                                     </td>
                                 </tr>
                                 @endforeach

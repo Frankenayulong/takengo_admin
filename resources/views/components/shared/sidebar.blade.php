@@ -7,12 +7,12 @@
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
         <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-            <li class="nav-item start {{Request::is('home') || Request::is('/') ? 'active' : ''}}">
+            <!-- <li class="nav-item start {{Request::is('home') || Request::is('/') ? 'active' : ''}}">
                 <a href="{{url('/home')}}" class="nav-link">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item {{Request::is('cars*') ? 'active' : ''}}">
                 <a href="{{url('/cars')}}" class="nav-link">
                     <i class="icon-grid"></i>

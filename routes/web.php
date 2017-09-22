@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/cars/{cid}', 'CarController@show');
     Route::post('/cars/{cid}/edit', 'CarController@edit');
     Route::get('/orders', 'OrderController@show');
+    Route::get('/orders/{ohid}', 'OrderController@details');
     Route::get('/messages', 'ContactUsController@show');
     Route::get('/newsletters', 'NewsletterController@show');
     Route::get('/users', 'UserController@show');
