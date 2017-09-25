@@ -24,6 +24,7 @@
     </div>
     <!-- END PAGE HEADER-->
     <div ng-controller="carNewController" class="car-list-page">
+        <form role="form" method="POST" action="{{url('/cars')}}" >
         <div class="row">
             <div class="col-md-12">
                 <div class="portlet light ">
@@ -34,7 +35,7 @@
                         </div>
                     </div>
                     <div class="portlet-body form">
-                    <form role="form" method="POST" action="{{url('/cars')}}" >
+                    
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group form-md-line-input form-md-floating-label {{$errors->has('name') ? 'has-error' : ''}}">
@@ -165,15 +166,55 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="form-actions noborder text-right">
                             <button type="button" class="btn default">Cancel</button>
                             <button type="submit" class="btn blue">Submit</button>
                         </div>
-                    </form>
+                    
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light ">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Current Location</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                    <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                            <input ng-model="lc.lat" name="lat" type="text" class="form-control edited" id="lc_lat">
+                            <label for="lc_lat">Latitude</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group form-md-line-input form-md-floating-label">
+                            <input ng-model="lc.long" name="long" type="text" class="form-control edited" id="lc_long">
+                            <label for="lc_long">Longitude</label>
+                        </div>
+                    </div>
+                    </div>
+                    <ng-map id="cars-collection-map" center="@{{lc.lat}}, @{{lc.long}}" zoom="13">
+                        
+                        <marker position="[@{{lc.lat}}, @{{lc.long}}]"
+                             centered="true" title="Current Location"
+                            draggable="true" on-dragend="setCurrentLocation()"
+                            >
+                        </marker>
+                        
+                    </ng-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
     </div>
 </div>
 @endsection

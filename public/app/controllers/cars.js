@@ -29,7 +29,7 @@ app.controller('carListController', ['$scope', '$timeout', '$http', '$rootScope'
     }
 }])
 
-app.controller('carNewController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){
+app.controller('carNewController', ['$scope', '$timeout', '$http', '$rootScope', 'NgMap', function($scope, $timeout, $http, $rootScope, NgMap){
     $scope.mileage = {
         unlimited: '0',
         limit: ''
@@ -41,6 +41,28 @@ app.controller('carNewController', ['$scope', '$timeout', '$http', '$rootScope',
             $scope.mileage.limit = '';
         }
     })
+
+    $scope.gmap = {};
+    NgMap.getMap().then(function(map) {
+        console.log(map)
+        $scope.gmap.map = map;
+    }).catch(err => {
+        console.log(err)
+    });
+
+    $scope.setCurrentLocation = function() {
+        var pos = this.getPosition();
+        console.log(pos.lat(),pos.lng());
+        $scope.lc.lat = pos.lat();
+        $scope.lc.long = pos.lng();
+        console.log($scope.lc);
+        $scope.digest();
+    }
+
+    $scope.lc = {
+        lat: -37.800426,
+        long: 144.9352466
+    }
 }])
 
 app.controller('carViewController', ['$scope', '$timeout', '$http', '$rootScope', function($scope, $timeout, $http, $rootScope){

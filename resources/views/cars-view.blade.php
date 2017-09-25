@@ -244,7 +244,6 @@
                         
                         <marker position="[{{$car->last_location[0]->lat or '-37.800426'}}, {{$car->last_location[0]->long or '144.9352466'}}]"
                              centered="true" title="Current Location"
-                            draggable="true" on-dragend="setCurrentLocation()"
                             >
                         </marker>
                         

@@ -119,7 +119,9 @@ class CarController extends Controller
             'air_conditioned' => 'required|boolean',
             'fuel_policy' => 'nullable',
             'unlimited_mileage' => 'required|boolean',
-            'limit_mileage' => 'nullable|numeric'
+            'limit_mileage' => 'nullable|numeric',
+            'lat' => 'nullable|numeric',
+            'long' => 'nullable|numeric'
         ]);
         $client = new Client();
         $result = $client->post(config('api.api_url') . 'admin/cars/create', [
@@ -139,7 +141,9 @@ class CarController extends Controller
                 'air_conditioned' => $request->air_conditioned,
                 'fuel_policy' => $request->fuel_policy,
                 'unlimited_mileage' => $request->unlimited_mileage,
-                'limit_mileage' => $request->limit_mileage
+                'limit_mileage' => $request->limit_mileage,
+                'lat' => $request->lat,
+                'long' => $request->long
             ]
         ]);
         $response = json_decode((string)$result->getBody());
